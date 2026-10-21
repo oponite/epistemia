@@ -19,6 +19,6 @@ website:
 
 format:
   html:
-    theme: lux
+    theme: cosmo
     toc: true
     lang: en
