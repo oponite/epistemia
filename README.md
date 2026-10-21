@@ -1,87 +1,32 @@
 # Epistemia
 
-An independent research archive for academic papers, technical reports, and exploratory research notes. Built with [Quarto](https://quarto.org/) and its default Lux theme.
+An independent research archive for academic papers, technical reports, and exploratory research notes.
 
-## Repository structure
+https://oponite.github.io/epistemia/
 
-```text
-epistemia/
-├── .github/workflows/deploy.yml
-├── papers/index.qmd
-├── papers/np-complete.md
-├── _quarto.yml
-├── .gitignore
-├── README.md
-├── TODO.md
-└── index.qmd
-```
+## Research Interests
 
-## Add a research paper
+- **Programming languages and formal methods:** How can languages make uncertainty, evidence, and correctness part of a program’s meaning?
+- **Information and decision theory:** How should systems represent incomplete knowledge and revise decisions as evidence changes?
+- **Artificial intelligence and reasoning:** How can computational models of reasoning be evaluated through explicit claims and reproducible experiments?
+- **Algorithms and complex systems:** Which constraints make a problem tractable, and how can models explain behavior across software and financial workflows?
 
-1. Create a `.md` or `.qmd` file in `papers/` with a unique filename, such as `information-models.md`. Subdirectories are supported. Reserve `papers/index.qmd` for the publication listing.
-2. Add the following required YAML front matter, then write the paper in Markdown:
+## About the Researcher
 
-   ```yaml
-   ---
-   title: "Paper Title"
-   author: "Author Name"
-   date: "2026-10-21"
-   description: "Brief abstract or paper description."
-   ---
-   ```
+I’m **Vijay Neelakantan**, an independent researcher and software builder.
 
-3. Run `quarto render` to check the result. Papers render directly to HTML and appear automatically in the Papers listing, newest first. No conversion or navigation edits are needed.
+I study how systems represent information, reason under uncertainty, and turn evidence into decisions. My work connects computer science and mathematical reasoning with practical questions in software architecture and financial systems.
 
-Use relative paths for links and assets, and keep paper assets alongside the paper. Quarto resolves links to `.md` and `.qmd` project pages to their HTML output. Tables of contents are enabled for papers.
+## From Research to Practice
 
-## Local use
+I build tools to explore these questions. [Lana](https://github.com/oponite/lana), my programming-language project, explores uncertainty-aware computation and auditable decision-making.
 
-Install [Quarto](https://quarto.org/docs/get-started/), then run these commands from this directory:
+## Collaboration & Contact
 
-```sh
-quarto preview
-```
+I welcome research questions, technical discussion, and conversations about applying this work to practical problems. Areas of interest include joint research, language and tooling development, technical evaluation, and exploratory prototypes for industry problems.
 
-Generate the static site in `_site/`:
+For research, collaboration, business inquiries, or general correspondence, email [vijayneelakantan@outlook.com](mailto:vijayneelakantan@outlook.com).
 
-```sh
-quarto render
-```
+Find my public work on [GitHub (@oponite)](https://github.com/oponite).
 
-Generated output and Quarto caches are ignored by Git.
-
-## GitHub Pages
-
-The local source is prepared on `main`. Run the following from this directory when ready to publish publicly.
-
-1. Create the GitHub repository and push the committed source:
-
-   ```sh
-   gh repo create oponite/epistemia --public --source=. --remote=origin --push
-   ```
-
-2. Enable GitHub Pages with GitHub Actions as its build source:
-
-   ```sh
-   gh api --method POST repos/oponite/epistemia/pages -f build_type=workflow
-   ```
-
-   The equivalent setting is **Repository Settings → Pages → Build and deployment → Source: GitHub Actions**.
-
-3. Start the first deployment after Pages is enabled:
-
-   ```sh
-   gh workflow run deploy.yml --repo oponite/epistemia --ref main
-   ```
-
-4. Check deployment status:
-
-   ```sh
-   gh run list --repo oponite/epistemia --workflow deploy.yml --limit 5
-   ```
-
-Later pushes to `main` deploy automatically. An initial run triggered before Pages is enabled may fail; the explicit run in step 3 performs the first configured deployment.
-
-The workflow renders and deploys to <https://oponite.github.io/epistemia/> using the native GitHub Pages artifact deployment. No `gh-pages` branch or committed HTML is needed.
-
-The first article will be available at <https://oponite.github.io/epistemia/papers/np-complete.html>.
+When reaching out, include the question or problem you’re exploring, relevant links, and the kind of contribution you have in mind.
