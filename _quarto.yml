@@ -1,0 +1,24 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - papers/**/*.qmd
+    - papers/**/*.md
+
+website:
+  title: Epistemia
+  site-url: https://oponite.github.io/epistemia/
+  search: false
+  navbar:
+    left:
+      - href: index.qmd
+        text: Home
+      - href: papers/index.qmd
+        text: Papers
+
+format:
+  html:
+    theme: lux
+    toc: true
+    lang: en

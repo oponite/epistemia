@@ -1,0 +1,34 @@
+---
+pagetitle: Epistemia
+toc: false
+---
+
+# Epistemia
+
+*Independent Research in Computation, Information, and Intelligence.*
+
+Epistemia is an independent research archive exploring the mathematical, computational, and philosophical foundations of information and intelligent systems.
+
+The research spans programming languages, artificial intelligence, information theory, formal methods, and computational models of reasoning.
+
+## Research Philosophy
+
+The central objective is to develop precise, testable explanations of complex systems and models through first-principles reasoning.
+
+Research published here emphasizes:
+
+- **Formalization:** Translating ideas into explicit definitions, mathematical models, and verifiable propositions.
+- **Experimentation:** Evaluating theoretical claims through computational implementations and reproducible experiments.
+- **Interdisciplinary inquiry:** Exploring relationships between fields to identify shared principles and new computational approaches.
+
+## Publications
+
+Epistemia contains research papers, technical reports, and exploratory research notes.
+
+Where applicable, publications include formal derivations, experimental results, implementation details, and links to supporting source code.
+
+**[Explore Papers](papers/)**
+
+---
+
+*Independent research. Open inquiry. Verifiable results.*

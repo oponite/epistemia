@@ -1,0 +1,16 @@
+---
+title: Papers
+toc: false
+listing:
+  contents:
+    - "**/*.md"
+    - "**/*.qmd"
+    - "!index.qmd"
+  type: table
+  fields: [title, date, description]
+  sort: "date desc"
+  sort-ui: false
+  filter-ui: false
+---
+
+Research papers, technical reports, and exploratory research notes.
