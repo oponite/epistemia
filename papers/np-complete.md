@@ -4,7 +4,6 @@ author: "Vijay Neelakantan"
 date: "2026-10-21"
 description: "An exact dynamic program for minimum-cardinality subset sum with a target smaller than the input set size."
 ---
-
 Given a sorted set of integers $X = \{x_1, x_2, \dots, x_n\}$, where every single $x_i$ is strictly positive ($x_i > 0$) and a target integer $T$, determine whether there exists a subset $S \subset X$ such that:
 
 1. The sum of all elements in $S$ equals $T$.
@@ -45,8 +44,8 @@ To recover a subset, also record whether each item strictly improves each table 
 
 The dynamic program uses $O(nT)$ time and $O(T)$ space for the minimum cardinality. Storing the choices needed to reconstruct a minimum-cardinality subset increases the space requirement to O(nT).
 
-For unrestricted targets, this runtime is **pseudo-polynomial**: it depends on the value of $T$, not just its binary length.
+For unrestricted targets, this runtime is pseudo-polynomial: it depends on the value of $T$, not just its binary length.
 
-Under the stated constraint $T<n$, the algorithm runs in $O(n²)$ time. It requires $O(n)$ space to compute the minimum cardinality, or $O(n²)$ space when retaining reconstruction choices. This establishes an exact polynomial-time solution for the restricted problem; the polynomial guarantee depends on the bound on T.
+**However, under the stated constraint $T<n$, the algorithm runs in $O(n²)$ time.** It requires $O(n)$ space to compute the minimum cardinality, or $O(n²)$ space when retaining reconstruction choices. This establishes an exact polynomial-time solution for the restricted problem; the polynomial guarantee depends on the bound on T.
 
 Reference: [Cornell lecture notes on Subset Sum and pseudo-polynomial time](https://courses.cs.cornell.edu/cs4820/2018fa/lectures/subset_sum.pdf).
