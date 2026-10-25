@@ -1,5 +1,5 @@
 ---
-title: "Describing and Solving an NP-complete Problem: Minimum-Cardinality Subset Sum with a Bounded Target"
+title: "Solving a Polynomial-Time Case of an NP-complete Problem: Minimum-Cardinality Subset Sum with a Bounded Target"
 author: "Vijay Neelakantan"
 date: "2026-10-21"
 description: "An exact dynamic program for minimum-cardinality subset sum with a target smaller than the input set size."
