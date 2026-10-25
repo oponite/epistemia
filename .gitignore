@@ -7,3 +7,6 @@ _freeze/
 /.quarto/
 **/*.quarto_ipynb
 TODO.md
+.venv/
+__pycache__/
+.pytest_cache/

@@ -1,6 +1,16 @@
 project:
   type: website
   output-dir: _site
+  resources:
+    - experiments/subset_sum/*.py
+    - experiments/subset_sum/results.csv
+    - experiments/subset_sum/benchmark.png
+    - experiments/subset_sum/README.md
+    - experiments/subset_sum/baseline/
+    - experiments/subset_sum/all_sizes/
+    - experiments/subset_sum/cardinality/
+    - experiments/subset_sum/layers/
+    - experiments/subset_sum/bidirectional/
   render:
     - index.qmd
     - papers/**/*.qmd

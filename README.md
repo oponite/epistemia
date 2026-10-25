@@ -4,6 +4,8 @@ An independent research archive for academic papers, technical reports, and expl
 
 https://oponite.github.io/epistemia/
 
+The bounded-target Subset Sum note includes a [reproducible Python experiment](experiments/subset_sum/README.md).
+
 ## Research Interests
 
 - **Programming languages and formal methods:** How can languages make uncertainty, evidence, and correctness part of a program’s meaning?

@@ -297,9 +297,11 @@ The timed studies used seeded inputs and preserved previous results. C and subse
 
 These families have controlled answers. Full-set targets equal the input total, and impossible cases use even inputs against odd targets. Direct checks can recognize those conditions. The measurements compare the stated implementations rather than establish intrinsic difficulty.
 
-The bidirectional comparison gave both temporary variants the same shortcuts and bounds. Across the existing 120 inputs, alternating directions used fewer extensions on **zero**, the same on **67**, and more on **53**. Its advantage in the near-full example therefore depends on the input.
+The bidirectional comparison gave both experimental variants the same shortcuts and bounds. Across the existing 120 inputs, alternating directions used fewer extensions on **zero**, the same on **67**, and more on **53**. Its advantage in the near-full example therefore depends on the input.
 
-The latest verification passed **3,289 repository tests**. Both temporary prototypes also matched exhaustive enumeration on **5,376 inputs each** and returned the expected answer on all 120 seeded cases.
+The latest verification passed **3,290 repository tests**. Both experimental prototypes also matched exhaustive enumeration on **5,376 inputs each** and returned the expected answer on all 120 seeded cases.
+
+The [forward-only and alternating prototypes](../experiments/subset_sum/bidirectional_prototypes.py), [per-input operation counts](../experiments/subset_sum/bidirectional/results.json), and [reproduction instructions](../experiments/subset_sum/README.md#reproduce-the-prototype-results) are published with this paper. Running the prototype script repeats the exhaustive checks and seeded comparison, including the 17,539/2,091 extension counts and the 0/67/53 split. These experimental variants are separate from `solve_fibonacci_layers`; their checks are also included in the repository test suite.
 
 ## A worst-case limitation
 
