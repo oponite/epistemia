@@ -21,13 +21,15 @@ The general formulation permits every subset size, including the empty set and t
 
 The central question of this investigation is how to establish the smallest feasible cardinality while avoiding repeated computation.
 
+I developed and evaluated a bidirectional prototype for exact minimum-cardinality subset sum. It combines cardinality-indexed earliest-ending states, forward search for retained elements, backward search for omitted elements, and explicit stopping conditions that certify optimality. The contribution examined here is this particular combination, its correctness analysis, and its measured behavior.
+
 ## Origin of the investigation
 
 This investigation began with a day spent reading Wikipedia’s article on the P versus NP problem. My aim was to explore whether I could develop an approach toward proving P=NP. Codex suggested subset sum as an example of an NP-complete problem. I chose to pursue it because I find sets of integers intuitive to manipulate mentally: I could construct examples, reason about combinations, and examine how changes to the constraints affected possible solutions.
 
 I remained focused on subset sum as the investigation developed. I also read Wikipedia’s treatment of the subset sum problem, extending my own background research beyond the original article on P versus NP. The initial note examined minimum-cardinality subset sum under a bounded-target restriction.
 
-I then continued the investigation through an extended dialogue with Codex. I proposed successive changes to the search strategy, questioned repeated computation, and requested implementations and comparative experiments. These decisions led from pair-first solving to reusable cardinality layers and a bidirectional prototype. The implementation and formal analysis were developed collaboratively, including the identification of a worst-case limitation.
+I designed and directed this investigation using Codex as a tool throughout its development and writing. I proposed successive changes, challenged repeated computation, selected comparisons, and requested implementations and experiments. I read and verified every line produced during that process. Tool-assisted development forms part of my research method.
 
 ## Starting with a bounded target
 
@@ -202,6 +204,14 @@ This already establishes YES and an optimum of four. The search does not require
 
 Under unit-cost arithmetic and expected constant-time hashing, the implementation has an $O(n^2T)$ time bound and $O(n+T)$ extra-space bound. Each layer has at most $T$ positive sums, each state can attempt up to $n$ extensions, and there are at most $n$ layers.
 
+A more informative time bound counts the states actually expanded. Let $\mathcal K$ contain the cardinalities whose layers are used to construct a successor layer. Under the same arithmetic and hashing assumptions, the expected running time is
+
+$$
+O\!\left(n+n\sum_{k\in\mathcal K}|L_k|\right).
+$$
+
+The initial $n$ accounts for validation and initialization. Each stored state attempts at most $n$ extensions. Equal-sum compression reduces the number of states in a layer, while early termination reduces the number of layers expanded. A final layer that supplies the answer is constructed but is not itself expanded. Bounding the sum by $nT$ recovers the coarser $O(n^2T)$ bound.
+
 The substantive change is reuse of compressed partial results. Fibonacci boundaries remain part of the scheduling, but do not supply that compression.
 
 ## Searching from both ends
@@ -245,6 +255,15 @@ $$
 leaves no unchecked cardinality. The best candidate can then be returned, or NO if neither direction found one.
 
 Positivity supplies additional bounds. Let $L$ be the smallest count whose largest elements can sum to at least $T$. Any answer contains at least $L$ elements, so backward search need not exceed $m-L$ omissions. An empty omission layer also excludes every larger omission count.
+
+For the bidirectional prototype, let $F_k$ and $B_r$ be the forward and backward state dictionaries, and let $\mathcal K_F$ and $\mathcal K_B$ index the layers actually expanded in each direction. The corresponding expected time bound is
+
+$$
+O\!\left(n+n\sum_{k\in\mathcal K_F}|F_k|
+          +n\sum_{r\in\mathcal K_B}|B_r|\right).
+$$
+
+Searching from both ends can avoid expanding large forward layers when the omission search supplies an earlier stopping certificate. It also incurs backward work. The extension counts below measure that tradeoff directly; the later worst-case construction shows how large the stored layers can still become.
 
 For the input
 
@@ -337,13 +356,19 @@ This establishes a superpolynomial worst case for the current explicit-layer imp
 
 Powers-of-two inputs themselves admit efficient specialized solutions. The result identifies a limitation of these implementations, not a lower bound for every subset-sum algorithm.
 
+## Relation to earlier methods
+
+The closest state-representation antecedent located in the review is Bob Weems's [2016 notes, §7.F](https://ranger.uta.edu/~weems/NOTES5311/NEWNOTES/notes00.pdf), which represent a reachable sum by its smallest ending index and extend it using later input elements. His [Fall 2020 assignment](https://ranger.uta.edu/~weems/NOTES3318/LAB/LAB3FALL20/lab3fall20.pdf) explicitly asks for cardinality to be added as another parameter, although it does not supply a complete two-dimensional implementation. The present solver evaluates cardinality layers using sparse dictionaries, retains only consecutive layers, and stops at the first successful cardinality.
+
+Complementary targets also have direct precedents. [O'Neil's 2013 empirical study, §2](https://micsymposium.org/mics_2013_Proceedings/submissions/mics20130_submission_13.pdf) replaces a target with the input total minus that target when this reduces the search range. The prototype here uses the complementary target to maximize omitted cardinality, alternating that search with minimum retained-cardinality search and applying explicit coverage and optimality stopping conditions. More broadly, sparse reachable-sum computation and its dependence on the number of represented sums are discussed by [Bringmann, Fischer, and Nakos](https://arxiv.org/html/2410.21942v1).
+
+A targeted literature review through 25 October 2026 identified antecedents for individual components but did not locate an earlier description of the complete alternating retained/omitted-cardinality design with the same state representation and termination policy. This finding identifies the scope of the combination examined here; it does not establish historical priority.
+
 ## What this investigation establishes
 
 The investigation connects several distinct mechanisms: using a cardinality lower bound to certify an early optimum, ordering exact-cardinality searches, reusing partial sums, and searching omitted complements.
 
-My contribution was to pursue these changes through successive questions and experiments: choosing subset sum as the working problem, removing restrictions, revising the search order, challenging repeated computation, proposing bidirectional layers, and requesting comparisons that included cases where DP won. The precise representations, implementations, tests, and proofs were developed collaboratively with Codex.
-
-Sparse reachable-sum computation belongs to an established line of dynamic programming research. Its cost can depend on how many distinct sums must be represented, as discussed by [Bringmann, Fischer, and Nakos](https://arxiv.org/html/2410.21942v1). Whether the particular combination developed here constitutes a historically new algorithm requires a more complete comparison with prior work.
+My contribution includes the algorithm-design decisions throughout this progression: choosing subset sum as the working problem, removing restrictions, revising the search order, challenging repeated computation, proposing bidirectional layers, and selecting comparisons that included cases where DP won. I used Codex in developing and writing the representations, implementations, tests, and proofs, and read and verified the resulting work.
 
 A polynomial-time algorithm for general subset sum would establish P=NP. A minimum-cardinality algorithm would suffice because its count immediately decides existence. The relevant requirement is a polynomial worst-case bound in encoded input length. [Stephen Cook’s problem statement](https://www.claymath.org/wp-content/uploads/2022/06/pvsnp.pdf)
 
