@@ -10,3 +10,4 @@ TODO.md
 .venv/
 __pycache__/
 .pytest_cache/
+persistence-of-self/
